@@ -1,0 +1,47 @@
+/* body {
+    background-color: rgb(76, 129, 146);   
+  } */
+
+body {
+  background-image: url("images/Homeimage.jpg");
+  background-color: #cccccc;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  /* text-align: center; */
+  padding: 25px 40px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  color: white;
+}
+
+.navflex {
+  display: flex;
+  justify-content: center;
+  /* Will resize the rectangle nav bar */
+  width: 90%; 
+}
+
+.navflex img {
+  align-self: center;
+}
+
+.navflex a {
+  width: 80px;
+}
