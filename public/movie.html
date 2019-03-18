@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-        <!-- http://localhost:5000/movie.html -->
+<!-- http://localhost:5000/movie.html -->
+
 <head>
     <meta charset="UTF-8">
     <title>Movie Time</title>
@@ -10,23 +11,24 @@
     <script src="script.js" type="text/javascript"></script>
 </head>
 
-<body>    
+<body>
     <nav>
         <div class="topnav">
             <div class="navflex">
-                <a href="home.html">Home</a>
-                <a href="aboutus.html">Hollwood</a>
-                <a href="services.html">Bollywood</a>
-                <a href="photos.html">Add Movie</a>
-                <a href="photos.html">TV Shows</a>
+                <a onclick ="loadDoc()" >Home</a>
+                <a  onclick ="loadDoc()" >>Hollwood</a>
+                <a  onclick ="loadDoc()" >>Bollywood</a>
+                <a  onclick ="loadDoc()" >>Add Movie</a>
+                <a  onclick ="loadDoc()" >>TV Shows</a>
             </div>
         </div>
     </nav>
 
     <div>
-            <button type="button" onclick="loadDoc()">Movie List</button>
+        <!-- <script>loadDoc();</script> -->
+        <!-- <button type="button" onclick="loadDoc()">Movie List</button> -->
     </div>
-<p id="p"></p>
+    <p id="p"></p>
 </body>
 
 </html>

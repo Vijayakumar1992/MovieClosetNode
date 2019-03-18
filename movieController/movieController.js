@@ -1,21 +1,19 @@
+const pg = require('pg');
+const connectionString = process.env.DATABASE_URL  // get thhe environment variable value from the app server
+
+
 function getMovieType(request, response) {
-    const movieResults = [
-        // we will send json data to the client 
-        // build a database query -- select, from, where
-        {
-            id: 1,
-            type: "Coco"
-        },
-        {
-            id: 2,
-            type: "Dangal"
-        },
-        {
-            id: 3,
-            type: "Nanban"
-        },
-    ];
-    response.json(movieResults);
+    var client = new pg.Client(connectionString) // gets database connection with connectionstring credentials 
+    client.connect(); // makes the actual connection
+
+    client.query('SELECT * FROM movie', (err, resultSet) => {
+        if (err) {
+          console.log(err.stack)
+        } else {
+            response.json(resultSet);
+        }
+      });
+    
 }
 
 // tell them what function we are gonna use

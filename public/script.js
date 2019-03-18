@@ -1,21 +1,21 @@
 function loadDoc() {
-    var xhttp = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server
     console.log("This project is working");
+    //defines a function to be executed when the readyState property changes
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest
 
             test(JSON.parse(this.responseText));
         }
     };
-    xhttp.open("GET", "/movieType", true);
+    //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp -has a good explanation
+    xhttp.open("GET", "/movieType", true);  //Send a Request To a Server
     xhttp.send();
 }
 
 let htmlPage = "";
 
-//if num = i++
-
-//++i i++
+//+= is same as x += 10 [ x = x + 10] 
 
 function test(response) {
     let length = response.length

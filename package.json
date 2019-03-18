@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Vijayakumar1992/MovieClosetNode#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.9.0"
   },
   "devDependencies": {},
   "description": ""
