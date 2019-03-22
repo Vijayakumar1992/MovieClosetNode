@@ -15,6 +15,9 @@ app.use(express.urlencoded()); //node express get node data
 const controller = require ("./movieController/movieController.js")
 
 app.get("/movieType", controller.getMovieType) // endpoints
+//app.get("/searchMovie", controller.searchMovieType) // second endpoints
+//app.get("/addMovie", controller.addMovie) // third endpoints
+
 
 
 app.listen(port, function () {

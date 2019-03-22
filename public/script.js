@@ -4,27 +4,27 @@ function loadDoc() {
     //defines a function to be executed when the readyState property changes
     xhttp.onreadystatechange = function () {
         console.log("in the callback function");
+        
         if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest
-
-            test(JSON.parse(this.responseText));
             console.log("this is the response text" + this.responseText);
+
+            var html = "<ul>";
+            var movieData = JSON.parse(this.responseText); // turns into js object
+            console.log(movieData); // actually turning into js object
+            console.log(movieData.rowCount);  // accessing js object
+
+            for( var i= 0; i < movieData.rowCount; i++)
+                    console.log(movieData.rows[i].movie_name);
+            // <ul>
+            //     <li>mov1</li>
+            //     <li>mov2</li>
+            // </ul>
+
+            //using movieList to display the movies in the front end page of html
+            document.getElementById("movieList").innerHTML = html; 
         }
     };
     //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp -has a good explanation
     xhttp.open("GET", "/movieType", true);  //Send a Request To a Server
     xhttp.send();
-}
-
-let htmlPage = "";
-
-//+= is same as x += 10 [ x = x + 10] 
-
-function test(response) {
-    let length = response.length
-    
-    for (let i = 0; i < length; ++i) {  
-        htmlPage += "<p>" + response[i].type + "</p>" // add on it 
-    }
-    document.getElementById("p").innerHTML = htmlPage;
-    console.log("were in test" + htmlPage);  //
 }
