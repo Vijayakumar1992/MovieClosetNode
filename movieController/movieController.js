@@ -2,9 +2,10 @@ const pg = require('pg');
 const connectionString = process.env.DATABASE_URL  // get thhe environment variable value from the app server
 
 
-function getMovieType(request, response) {
+function getMovies(request, response) {
     var client = new pg.Client(connectionString) // gets database connection with connectionstring credentials 
     client.connect(); // makes the actual connection
+    var movieType = request.query.type;
 
 
 // my second and third functions

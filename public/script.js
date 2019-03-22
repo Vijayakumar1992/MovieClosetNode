@@ -1,16 +1,12 @@
-function loadDoc() {
-    var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server
-    console.log("This project is working");
+function getMovies(movieType) {
+    var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
     //defines a function to be executed when the readyState property changes
     xhttp.onreadystatechange = function ()
-    {
-        console.log("in the callback function");
-        
-        if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest
-            console.log("this is the response text" + this.responseText);
+    {        
+        if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest          
 
             let html = "<ul>";
-                var movieData = JSON.parse(this.responseText); // turns into js object
+                var movieData = JSON.parse(this.responseText); // turns text into js object
                 console.log(movieData); // actually turning into js object
                 console.log(movieData.rowCount);  // accessing js object
 
@@ -19,12 +15,11 @@ function loadDoc() {
                     html += "<li>" + movieData.rows[i].movie_name + "</li>";               
                 }           
             html += "</ul>"; // closing ul  list
-
             //using movieList to display the movies in the front end page of html
             document.getElementById("movieList").innerHTML = html; // takis html insert into html
         }
     }
-    //https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp -has a good explanation
-    xhttp.open("GET", "/movieType", true);  //Send a Request To a Server
+    //https://www.w3schools.com/xml/ajax_xmlhttpequest_send.asp -has a good explanation
+    xhttp.open("GET", "/getMovies?type=" + movieType, true);  //Send a Request To a Server
     xhttp.send();
 }
