@@ -1,6 +1,8 @@
 // C:\Users\david\Desktop\BYUI\WINTER 2019\CS313\MovieCloset -- folder path(type cd)
 // link:  http://localhost:5000/movieType
 
+
+
 // need to do ajax to make  the page load
 const express = require("express");
 const app = express();

@@ -19,7 +19,7 @@ function getMovies(movieType) {
             document.getElementById("movieList").innerHTML = html; // takis html insert into html
         }
     }
-    //https://www.w3schools.com/xml/ajax_xmlhttpequest_send.asp -has a good explanation
+    
     xhttp.open("GET", "/getMovies?type=" + movieType, true);  //Send a Request To a Server
     xhttp.send();
 }

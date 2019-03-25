@@ -1,8 +1,12 @@
 const pg = require('pg');
+require('dotenv').config();
 const connectionString = process.env.DATABASE_URL  // get thhe environment variable value from the app server
+//tells the Pool object to use this connection string
+//const pool = new Pool({connectionString: connectionString}); 
 
 
 function getMovies(request, response) {
+  console.log("connection is: " + connectionString);
     var client = new pg.Client(connectionString) // gets database connection with connectionstring credentials 
     client.connect(); // makes the actual connection
     var movieType = request.query.type;
@@ -31,9 +35,7 @@ function getMovies(request, response) {
 
 // tell them what function we are gonna use
 module.exports = {   
-    getMovieType: getMovieType
-
-
+    getMovies: getMovies
     // getSearchMovieType: getSearchMovieType
     // getAddMovie: getAddMovie
 };
