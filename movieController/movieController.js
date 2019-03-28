@@ -9,9 +9,7 @@ function getMovies(request, response) {
   console.log("connection is: " + connectionString);
     var client = new pg.Client(connectionString) // gets database connection with connectionstring credentials 
     client.connect(); // makes the actual connection
-    var movieType = request.query.type;
-
-
+    
 // my second and third functions
     // function getSearchMovieType(request, response) {
     // var client = new pg.Client(connectionString) 
@@ -22,15 +20,18 @@ function getMovies(request, response) {
     // client.connect(); 
 
     // need to figure out how to get the data on the my webbrowser instead of on console. 
-    client.query('SELECT * FROM movie', (err, resultSet) => {
-        if (err) {
-          console.log(err.stack)
-        } else {
-            response.json(resultSet);
-            
-        }
-      });
-    
+    const text = 'SELECT * FROM movie WHERE movie_type_id = (SELECT movie_type_id FROM movie_type WHERE movie_type_name = $1)';
+    const values = [request.query.type];
+
+// callback
+client.query(text, values, (error, resultSet) => {
+  if (error) {
+    console.log(error.stack);
+  } else {
+    response.json(resultSet.rows);
+  }
+})
+
 }
 
 // tell them what function we are gonna use
