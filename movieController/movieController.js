@@ -19,7 +19,7 @@ function getMovies(request, response) {
     // var client = new pg.Client(connectionString) 
     // client.connect(); 
 
-    // need to figure out how to get the data on the my webbrowser instead of on console. 
+    // getts the movie type and diplay the id and then below outputs the movies name 
     const text = 'SELECT * FROM movie WHERE movie_type_id = (SELECT movie_type_id FROM movie_type WHERE movie_type_name = $1)';
     const values = [request.query.type];
 
