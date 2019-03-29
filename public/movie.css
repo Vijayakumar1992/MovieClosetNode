@@ -5,6 +5,7 @@
 body {
   background-image: url("images/Homeimage.jpg");
   background-color: #cccccc;
+  margin: 0 0 8px 0;
 }
 
 .topnav {
@@ -49,5 +50,18 @@ body {
 /* Changes the movies fonts color */
 .movieList {
   font-size: 20px;
-  color: whitesmoke;
+  color: black;
+  
+}
+
+#movieList{
+  background-color: lightgrey;
+  width: 300px;
+  border: 1.8px solid black;
+  padding: 25px;
+  margin: 25px;
+  display: none;
+  position:absolute;
+  top: 200px;
+  left: 430px;
 }
