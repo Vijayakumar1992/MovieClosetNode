@@ -22,9 +22,10 @@ function getMovies(request, response) {
     // getts the movie type and diplay the id and then below outputs the movies name 
     const text = 'SELECT * FROM movie WHERE movie_type_id = (SELECT movie_type_id FROM movie_type WHERE movie_type_name = $1)';
     const values = [request.query.type];
-
+ 
 // callback
 client.query(text, values, (error, resultSet) => {
+  console.log(resultSet);
   if (error) {
     console.log(error.stack);
   } else {

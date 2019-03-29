@@ -45,3 +45,9 @@ body {
 .navflex a {
   width: 80px;
 }
+
+/* Changes the movies fonts color */
+.movieList {
+  font-size: 20px;
+  color: whitesmoke;
+}

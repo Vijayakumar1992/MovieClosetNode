@@ -5,14 +5,14 @@ function getMovies(movieType) {
     {        
         if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest          
 
-            let html = "<ul>";
+            let html = "<ul class='movieList'>";
                 var movieData = JSON.parse(this.responseText); // turns text into js object
                 console.log(movieData); // actually turning into js object
-                console.log(movieData.rowCount);  // accessing js object
+                console.log(movieData.length);  // accessing js object
 
-                for( var i= 0; i < movieData.rowCount; i++){
-                        console.log(movieData.rows[i].movie_name);            
-                    html += "<li>" + movieData.rows[i].movie_name + "</li>";               
+                for( var i= 0; i < movieData.length; i++){
+                        console.log(movieData[i].movie_name);            
+                    html += "<li>" + movieData[i].movie_name + "</li>";               
                 }           
             html += "</ul>"; // closing ul  list
             //using movieList to display the movies in the front end page of html
