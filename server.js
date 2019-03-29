@@ -7,18 +7,18 @@
 const express = require("express");
 const app = express();
 
-const port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000;
 
 // looks into public folder & posts the html file on web. 
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded()); //node express get node data
 
-const controller = require ("./movieController/movieController.js")
+const controller = require("./movieController/movieController.js")
 
 app.get("/getMovies", controller.getMovies) // endpoints
+app.post("/addMovie", controller.addMovies) // second endpoints
 //app.get("/searchMovie", controller.searchMovieType) // second endpoints
-//app.post("/addMovie", controller.addMovie) // third endpoints
 
 
 

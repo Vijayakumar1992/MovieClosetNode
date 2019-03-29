@@ -21,6 +21,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .topnav a:hover {
@@ -36,7 +37,7 @@ body {
   display: flex;
   justify-content: center;
   /* Will resize the rectangle nav bar */
-  width: 90%; 
+  width: 90%;
 }
 
 .navflex img {
@@ -51,17 +52,31 @@ body {
 .movieList {
   font-size: 20px;
   color: black;
-  
+
 }
 
-#movieList{
+#movieList {
   background-color: lightgrey;
   width: 300px;
   border: 1.8px solid black;
   padding: 25px;
   margin: 25px;
-  display: none;
-  position:absolute;
+  display: none; 
+  position: absolute;
   top: 200px;
   left: 430px;
+}
+
+#movieStylecss{
+  background-color: lightgrey;
+  border: 1.8px solid black;
+  justify-content: center;
+  position: absolute;
+  padding: 25px;
+  margin: 25px;
+  width: 30%;
+  display: none;
+  top: 200px;
+  left: 430px;
+  
 }
