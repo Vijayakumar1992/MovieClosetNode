@@ -27,10 +27,6 @@ function getMovies(movieType) {
     xhttp.send();
 }
 
-
-xhttp.open("POST", "/addMovie", true); //Send a Request To a Server
-    xhttp.send(JSON);
-
 function edit() {
     var txt;
     var movie = document.getElementById("movies").value; // will get the movies entered by user      
