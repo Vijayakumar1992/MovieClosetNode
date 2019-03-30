@@ -1,5 +1,5 @@
 // C:\Users\david\Desktop\BYUI\WINTER 2019\CS313\MovieCloset -- folder path(type cd)
-// link:  http://localhost:5000/movie.html
+// link:  http://localhost:5000/index.html
 
 
 
