@@ -27,6 +27,10 @@ function getMovies(movieType) {
     xhttp.send();
 }
 
+
+xhttp.open("POST", "/addMovie", true); //Send a Request To a Server
+    xhttp.send(JSON);
+
 function edit() {
     var txt;
     var movie = document.getElementById("movies").value; // will get the movies entered by user      
@@ -51,7 +55,6 @@ function deleteMovie() {
     document.getElementById("movieList").innerHTML = txt;
 }
 
-
 function addMovies() {
     document.getElementById("movieStylecss").style.display = "block";
     document.getElementById("movieList").style.display = "none"; //displays one box at a time    
@@ -63,6 +66,11 @@ function addFunction() {
     var nameOfMovie = document.getElementById("nameOfMovie").value;
     var threeMovieType = document.getElementById("threeMovieType").value;
     var genreType = document.getElementById("genreType").value;
+
+    // Convert a string written in JSON format, into a JavaScript object.
+    var myJSON = '{nameType: nameOfMovie, movieName: threeMovieType, genre: genreType}';
+    var myObj = JSON.parse(myJSON);
+    document.getElementById("movieStylecss").innerHTML = myObj.name;
 
     // using AJAX to send the data to the  server through JQuary concept
     function postAjax(url, data, success) {
@@ -77,8 +85,10 @@ function addFunction() {
         };
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send(movieType, movieName, movieWatched, genre);
+        xhr.send(JSON);
         return xhr;
+
+        
     }
 }
     
