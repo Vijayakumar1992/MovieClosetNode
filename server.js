@@ -11,8 +11,8 @@ const port = process.env.PORT || 5000;
 
 // looks into public folder & posts the html file on web. 
 app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded()); //node express get node data
+app.use(express.json());  // support Json enbeded bodies
+app.use(express.urlencoded({extended: true})); //supports utl encoded bodies
 
 const controller = require("./movieController/movieController.js")
 

@@ -51,43 +51,45 @@ function deleteMovie() {
     document.getElementById("movieList").innerHTML = txt;
 }
 
-function addMovies() {
+function displayAddMovie() {
     document.getElementById("movieStylecss").style.display = "block";
     document.getElementById("movieList").style.display = "none"; //displays one box at a time    
 }
 
-//get the movie data
-function addFunction() {
+//get the movie data of the user
+function addMovies() {
     // getting the value inside the input and get the movies entered by user
     var nameOfMovie = document.getElementById("nameOfMovie").value;
-    var threeMovieType = document.getElementById("threeMovieType").value;
-    var genreType = document.getElementById("genreType").value;
+
+    //movie type
+    var selectTag = document.getElementById('threeMovieType');
+    var optionTag = selectTag.options[selectTag.selectedIndex]; // gets the selected index and gets one of the movie type
+    var movieType = optionTag.value // grabs the specific movie type
+
+    //genre type
+    var selectTag = document.getElementById('genreType');
+    var optionTag = selectTag.options[selectTag.selectedIndex];
+    var genreType = optionTag.value
+
+
 
     // Convert a string written in JSON format, into a JavaScript object.
-    var myJSON = '{nameType: nameOfMovie, movieName: threeMovieType, genre: genreType}';
-    var myObj = JSON.parse(myJSON);
-    document.getElementById("movieStylecss").innerHTML = myObj.name;
+    // var myJSON = '{nameType: nameOfMovie, movieName: threeMovieType, genre: genreType}';
+    // var myObj = JSON.parse(myJSON);
+    // document.getElementById("movieStylecss").innerHTML = myObj.name;
 
-    // using AJAX to send the data to the  server through JQuary concept
-    function postAjax(url, data, success) {
-        var params = typeof data == 'string' ? data : Object.keys(data).map(
-                function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
-            ).join('&');
-    
-        var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-        xhr.open('POST', url);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState>3 && xhr.status==200) { success(xhr.responseText); }
-        };
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send(JSON);
-        return xhr;
+    // using AJAX to send the data to the  server through JQuary concept  
+    var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
+    //defines a function to be executed when the readyState property changes
+    xhttp.onreadystatechange = function () { //callback function, when the request is done run this code
+        if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest          
 
-        
+        getMovies("all");            
+        }
     }
+
+    xhttp.open("POST", "/addMovie", true); //Send a Request To a Server
+    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhttp.send("movieType=" + movieType + "&" + "movieName=" + nameOfMovie + "&" + "genre=" + genreType);
+
 }
-    
-
-
-        
