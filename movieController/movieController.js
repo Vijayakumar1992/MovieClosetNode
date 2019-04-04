@@ -9,13 +9,8 @@ function getMovies(request, response) {
   var client = new pg.Client(connectionString) // gets database connection with connectionstring credentials 
   client.connect(); // makes the actual connection
 
-  // my second and third functions
-  // function getSearchMovieType(request, response) {
-  // var client = new pg.Client(connectionString) 
-  // client.connect();  
   var text;
-  var values;
-     
+  var values;     
 if ( request.query.type == "all")
 {
    text = "SELECT * FROM movie";
@@ -63,27 +58,41 @@ function addMovies(request, response) {
 
 }
 
-function deleteMovies(request, response){
-  console.log("The sql is working"); //remove it later
+function deleteMovies(request, response){  
   var client = new pg.Client(connectionString)
   client.connect();
   var movieName = request.body.movieName;
 
-  console.log("The sql is working"); //remove it later
-
-
   const text = 'DELETE FROM movie WHERE movie_name = $1'
   const values = [movieName]
-
-  console.log(values); //remove it later
 
   client.query(text, values, (error, resultSet) => {
     console.log(resultSet);
     if (error) {
       console.log(error.stack);
-      //response.json("error: Movie entered incorrectly")
-      console.log("The sql is working"); //remove it later
+      //response.json("error: Movie entered incorrectly")   
+    } else {
+      response.status(200).send(); // sends the data back to user 
+    }
+  })
 
+}
+
+function editMovies(request, response){  
+  var client = new pg.Client(connectionString)
+  client.connect();
+  
+  var oldMovieName = request.query.oldMovieName;
+  var newMovieName = request.query.newMovieName;
+
+  const text = 'UPDATE movie SET movie_name = $1 WHERE movie_name = $2';
+  const values = [newMovieName, oldMovieName]
+
+  client.query(text, values, (error, resultSet) => {
+    console.log(resultSet);
+    if (error) {
+      console.log(error.stack);
+      //response.json("error: Movie entered incorrectly")   
     } else {
       response.status(200).send(); // sends the data back to user 
     }
@@ -96,7 +105,7 @@ function deleteMovies(request, response){
 module.exports = {
   getMovies: getMovies,
   addMovies: addMovies,
-  deleteMovies: deleteMovies
-  // SearchMovies: SearchMovie
+  deleteMovies: deleteMovies,
+  editMovies: editMovies 
 
 };

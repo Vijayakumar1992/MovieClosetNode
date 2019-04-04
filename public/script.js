@@ -30,13 +30,24 @@ function getMovies(movieType) {
 function edit() {
     var txt;
     var movie = document.getElementById("movies").value; // will get the movies entered by user      
-    var person = prompt("Edit the movie:", movie);
-    if (person == null || person == "") {
+    var newMovieName = prompt("Edit the movie:", movie);
+    if (newMovieName == null || newMovieName == "") {
         txt = "User cancelled the prompt.";
     } else {
-        txt = "This week we will watch:" + person;
-    }
-    document.getElementById("movieList").innerHTML = txt;
+        txt = "The Movie is edited! " + newMovieName;
+        document.getElementById("movieList").innerHTML = txt;
+
+        var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
+            //defines a function to be executed when the readyState property changes
+            xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest         
+                getMovies("all");
+            }
+        }
+            xhttp.open("GET", "/editMovies?oldMovieName=" + movie + "&newMovieName=" + newMovieName, true); //Send a Request To a Server
+            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.send(); 
+    }    
 }
 
 function deleteMovie() {
@@ -49,9 +60,7 @@ function deleteMovie() {
     else {
         txt = "The movie is deleted";
         document.getElementById("movieList").innerHTML = txt;
-
-
-       // if (txt != "User cancelled the prompt.") {
+            
             var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
             //defines a function to be executed when the readyState property changes
             xhttp.onreadystatechange = function () {
@@ -62,9 +71,8 @@ function deleteMovie() {
         }
             xhttp.open("POST", "/deleteMovies", true); //Send a Request To a Server
             xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhttp.send("movieName=" + movie);
-            
-        //}
+            xhttp.send("movieName=" + movie);           
+        
     }
 }
 

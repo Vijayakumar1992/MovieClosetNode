@@ -18,6 +18,7 @@ const controller = require("./movieController/movieController.js")
 app.get("/getMovies", controller.getMovies) // endpoints
 app.post("/addMovie", controller.addMovies) // second endpoints
 app.post("/deleteMovies", controller.deleteMovies)
+app.get("/editMovies", controller.editMovies)
 
 
 
