@@ -25,8 +25,7 @@ else{
   // getts the movie type and diplay the id and then below outputs the movies name 
    text = 'SELECT * FROM movie WHERE movie_type_id = (SELECT movie_type_id FROM movie_type WHERE movie_type_name = $1)';
    values = [request.query.type];
-}
-  
+}  
 
   // callback
   client.query(text, values, (error, resultSet) => {
@@ -44,14 +43,10 @@ function addMovies(request, response) {
   var client = new pg.Client(connectionString)
   client.connect();
 
-
-
   var movieType = request.body.movieType;
   var movieName = request.body.movieName; 
   //var movieWatched = request.body.movieWatched; 
-  var genre = request.body.genre;
-    
- 
+  var genre = request.body.genre; 
 
   const text = 'INSERT INTO movie VALUES (default, $1, $2, $3, $4)' //prepared statement for sql
   const values = [movieType, movieName, false, genre]
@@ -69,10 +64,34 @@ function addMovies(request, response) {
 
 }
 
+function deleteMovies(request, response){
+  var client = new pg.Client(connectionString)
+  client.connect();
+  var movieName = request.body.movieName;
+
+  const text = 'DELETE FROM movie WHERE movie_name = $1 '
+  const vslues = [movieName]
+
+  client.query(text, values, (error, resultSet) => {
+    console.log(resultSet);
+    if (error) {
+      console.log(error.stack);
+      //response.json("error: Movie entered incorrectly")
+    } else {
+      response.status(200).send(); // sends the data back to user 
+    }
+  })
+
+}
+
+
+
+
 // tell them what function we are gonna use
 module.exports = {
   getMovies: getMovies,
-  addMovies: addMovies
+  addMovies: addMovies,
+  deleteMovies: deleteMovies
   // SearchMovies: SearchMovie
 
 };

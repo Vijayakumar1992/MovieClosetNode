@@ -2,7 +2,6 @@
 // link:  http://localhost:5000/index.html
 
 
-
 // need to do ajax to make  the page load
 const express = require("express");
 const app = express();
@@ -18,7 +17,8 @@ const controller = require("./movieController/movieController.js")
 
 app.get("/getMovies", controller.getMovies) // endpoints
 app.post("/addMovie", controller.addMovies) // second endpoints
-//app.get("/searchMovie", controller.searchMovieType) // second endpoints
+app.get("/deleteMovies", controller.deleteMovies)
+
 
 
 
