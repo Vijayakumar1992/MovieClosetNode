@@ -42,30 +42,30 @@ function edit() {
 function deleteMovie() {
     var txt;
     var movie = document.getElementById("movies").value;
-    var person = prompt("Delete the movie:", movie);
-    if (person == null || person == "") {
+    var person = confirm("Do you want to delete this movie? "+ movie);
+    if (person == null ) {
         txt = "User cancelled the prompt.";
     } 
     else {
-        txt = "We will watch this movie:" + person;
-    }
-    document.getElementById("movieList").innerHTML = txt;
+        txt = "The movie is deleted";
+        document.getElementById("movieList").innerHTML = txt;
 
 
-    if (txt != "User cancelled the prompt.") {
-        var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
-        //defines a function to be executed when the readyState property changes
-        xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest         
-            txt = "The movie is deleted";
+       // if (txt != "User cancelled the prompt.") {
+            var xhttp = new XMLHttpRequest(); // create the XMLHttpRequest request & exchange data with a server    
+            //defines a function to be executed when the readyState property changes
+            xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) { // readyState/Status-holds the status of the XMLHttpRequest         
+                console.log ("The movie is deleted");
+                getMovies("all");
+            }
         }
-        
-        xhttp.open("POST", "/deleteMovies", true); //Send a Request To a Server
-        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhttp.send("movieName=" + nameOfMovie);
-        }
+            xhttp.open("POST", "/deleteMovies", true); //Send a Request To a Server
+            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.send("movieName=" + movie);
+            
+        //}
     }
-
 }
 
 // //if (txt != "User cancelled the prompt.") {
