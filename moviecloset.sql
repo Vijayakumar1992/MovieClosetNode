@@ -31,7 +31,9 @@ INSERT INTO genre VALUES
 (DEFAULT, 'Comedy'),
 (DEFAULT, 'Romantic'),
 (DEFAULT, 'Thriller'),
-(DEFAULT, 'Horror');    
+(DEFAULT, 'Horror'),
+(DEFAULT, 'Family');
+   
 
 --('Coco', 'Tiger Hunter', 'The Meg', 'Nanban', 'Sivaji', 'Kaththi');
 INSERT INTO movie VALUES 
